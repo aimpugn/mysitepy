@@ -25,14 +25,14 @@
 			{% for guestbook in guestbooks %}
 			<table>
 				<tr>
-					<td></td>
+					<td>{{forloop.revcounter}}</td>
 					<td>{{guestbook.name}}</td>
 					<td>{{guestbook.time}}</td>
-					<td><a href="/guestbook/delete">삭제</a></td>
+					<td><a href="/guestbook/deleteform?no={{ guestbook.id }}">삭제</a></td>
 				</tr>
 				<tr>
 					<td colspan=4>
-						{{guestbook.content}}
+						{{ guestbook.content|wordwrap:50|linebreaksbr }}
 					</td>
 				</tr>
 			</table>

@@ -9,4 +9,4 @@ class Guestbook(models.Model):
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Guestbook(%s, %s)' % (self.name, self.content)
+        return 'Guestbook(%s, %s, %s)' % (self.id, self.name, self.content)

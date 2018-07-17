@@ -25,6 +25,7 @@ urlpatterns = [
     # guestbook
     path('guestbook/', guestbook_views.list),
     path('guestbook/add', guestbook_views.add),
+    path('guestbook/deleteform', guestbook_views.deleteform),
     path('guestbook/delete', guestbook_views.delete),
 
     # user
