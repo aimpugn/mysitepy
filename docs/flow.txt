@@ -1,0 +1,78 @@
+1. mysitepy 프로젝트 생성
+
+2. Django 프레임워크 설치
+
+3. MySQL Client를 터미널로 설치
+    3.1 pip install mysqlclient==1.3.12
+
+4. 장고 프로젝트 생성
+   django-admin startproject mysitepy
+
+5. 생성된 프로젝트에서 manage.py는 가장 위로 옮기고, 프로젝트 설정 파일은 한 단계 위로 옮긴다.
+
+6. settings.py 설정
+    6.1. TIME_ZONE = 'Asia/Seoul'
+    6.2. setting.py 변경
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'djdb',
+            'USER': 'djdb',
+            'PASSWORD': 'djdb',
+            'HOST': '127.0.0.1',
+            'PORT': '3306'
+        }
+    }
+
+7. 장고 프로젝트가 기본적으로 관리하는 테이블 생성(migrate)
+    7.1. python manage.py migrate
+        7.1.1. 이미 설정되어 있다면 No migrations to apply.라는 결과 출력
+
+8. 장고 프로젝트 관리자 계정 생성
+    8.1. python manage.py createsuperuser
+
+9. 지금까지 작업 확인하기
+    9.1. 서버 시작하기
+         python manage.py runserver 0.0.0.0:포트
+    9.2. 브라우저로 접근
+         http://localhost:포트
+
+10. template 디렉토리 설정
+    10.1. setting.py 변경
+    TEMPLATES = [
+        {
+            ....
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            ....
+    ]
+    10.2. 설정 후 프로젝트 디렉토리 바로 밑에 templates 디렉토리 생성
+
+11. static 디렉토리 설정
+    11.1. setting.py에서 static 경로를 assets으로 찾게 설정
+    STATIC_URL = '/assets/'
+
+    11.2. setting.py에서 BASE_DIR 밑의 statics 폴더에서 찾게 된다. 물리적인 경로 설정.
+    STATICFILES_DIR = (
+        os.path.join(BASE_DIR, 'statics')
+    )
+
+12. Application 생성(반복)
+    12.1. python manage.py startapp main
+
+13. model delete 방법. 골라내서 삭제한다.
+    13.1. 필터 사용하는 방법
+          Guestbook.objects.filter().filter().delete()
+    13.2. id로 삭제하는 방법(get은 조건 하나 있을 때 사용 가능. id 외 다른 조건도 사용 가능. )
+        13.2.1. Guestbook.objects.get(id=20).delete()
+        13.2.2. guestbook = Gutestbook.objects.get(id=20)
+                guestbook.delete()
+
+14. model update 방법.
+    14.1. user = User.objects.get(id=10)
+          user.name = '새로운 값'
+          user.password = '새로운 값'
+          user.save()  # 저장
+
+view를 클래스로 사용하는 방법
+
+
